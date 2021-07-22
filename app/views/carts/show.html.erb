@@ -1,20 +1,15 @@
+<section class="cart-show">
 <% if enhanced_cart.length == 0 %>
-  <section class="cart-show">
-    <header class="page-header" style="border:none;">
-      <h1>My Cart</h1>
-    </header>
-    <div class="alert alert-info" role="alert">
-    Nothing on the cart yet, go back to the <span class="alert-link"><%= link_to 'Jungle', products_path %></span>.
-    </div>
-    
-  </section>
+  <header class="page-header" style="border:none;">
+    <h1>My Cart</h1>
+  </header>
+  <div class="alert alert-info" role="alert">
+  Nothing on the cart, go back to the <span class="alert-link"><%= link_to 'Jungle', products_path %></span>.
+  </div>
 <% else %> 
-  <section class="cart-show">
-
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
-
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -42,7 +37,6 @@
       </tfoot>
     </table>
   </div>
-
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
@@ -59,9 +53,8 @@
       <% end %>
     </div>
   </div>
-
-  </section>
 <% end %>
+</section>
 
 
 
