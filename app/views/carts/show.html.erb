@@ -1,4 +1,15 @@
-<section class="cart-show">
+<% if enhanced_cart.length == 0 %>
+  <section class="cart-show">
+    <header class="page-header" style="border:none;">
+      <h1>My Cart</h1>
+    </header>
+    <div class="alert alert-info" role="alert">
+    Nothing on the cart yet, go back to the <span class="alert-link"><%= link_to 'Jungle', products_path %></span>.
+    </div>
+    
+  </section>
+<% else %> 
+  <section class="cart-show">
 
   <header class="page-header">
     <h1>My Cart</h1>
@@ -49,4 +60,12 @@
     </div>
   </div>
 
-</section>
+  </section>
+<% end %>
+
+
+
+
+
+
+
