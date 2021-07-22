@@ -17,9 +17,9 @@
           </tr>
         </thead>
         <tbody>
-          <% @order.line_items.each do |item| %>
-            <% @product = Product.find item.id %>
-            <%= render 'line_item', product: @product, quantity: item[:quantity].to_i %>
+          <% @order.line_items.each do |line_item| %>
+            <% product = Product.find line_item.product_id%>
+            <%= render 'line_item', product: product, quantity: line_item[:quantity].to_i %>
           <% end %>
         </tbody>
         <tfoot>
