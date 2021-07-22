@@ -1,2 +1,12 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>Products</h2></div>
+  <div class="panel-body">
+    <div class="alert alert-success" role="alert">There are <strong><%= link_to @products.length, admin_products_path %></strong> categories in the database.</div>
+  </div>
+</div>
+  <div class="panel panel-default">
+  <div class="panel-heading"><h2>Categories</h2></div>
+  <div class="panel-body">
+    <div class="alert alert-success" role="alert">There are <strong><%= link_to @categories.length, admin_categories_path %></strong> categories in the database.</div>
+  </div>
+</div>
