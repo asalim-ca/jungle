@@ -1,0 +1,13 @@
+<section class="categories-show">
+  <header class="page-header">
+    <h1>
+      <%= category.name %>
+      <small>(<%= pluralize products.size, 'product' %>)</small>
+    </h1>
+  </header>
+  <div class="products">
+    <% products.each do |product| %>
+      <%= render 'product', product: product %>
+    <% end %>
+  </div>
+</section>
