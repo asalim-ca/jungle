@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  
   def new
   end
 
@@ -11,11 +11,13 @@ class UsersController < ApplicationController
     else
       redirect_to '/register'
     end
-  end 
+  end
 
   private
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+
 
 end
