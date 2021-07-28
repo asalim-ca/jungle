@@ -2,6 +2,17 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'Validations' do
+    it 'Should be required : first name, last name and email' do
+
+      @user = User.new({:password => '123456', :password_confirmation => '123456'})
+      
+      @user.validate
+
+      expect(@user.errors.full_messages).to include("First name can't be blank")
+      expect(@user.errors.full_messages).to include("Last name can't be blank")
+      expect(@user.errors.full_messages).to include("Email can't be blank")
+    end
+
     it 'It must be created with a password and password_confirmation fields' do
 
 
@@ -9,8 +20,8 @@ RSpec.describe User, type: :model do
         :first_name => 'Ali',
         :last_name => 'Salim',
         :email => 'user1@gmail.com',
-        :password => '12345',
-        :password_confirmation => '54321'
+        :password => '123456',
+        :password_confirmation => '123457'
       })
 
       @user1.validate
@@ -22,7 +33,7 @@ RSpec.describe User, type: :model do
         :first_name => 'Ali',
         :last_name => 'Salim',
         :email => 'user2@gmail.com',
-        :password => '12345',
+        :password => '123456',
         :password_confirmation => ''
       })
 
@@ -35,8 +46,8 @@ RSpec.describe User, type: :model do
         :first_name => 'Ali',
         :last_name => 'Salim',
         :email => 'user3@gmail.com',
-        :password => '12345',
-        :password_confirmation => '12345'
+        :password => '123456',
+        :password_confirmation => '123456'
       })
       
       @user3.validate
@@ -52,8 +63,8 @@ RSpec.describe User, type: :model do
         :first_name => 'Ali',
         :last_name => 'Salim',
         :email => 'unique@gmail.com',
-        :password => '12345',
-        :password_confirmation => '12345'
+        :password => '123456',
+        :password_confirmation => '123456'
       })
 
       @user4.validate
@@ -64,8 +75,8 @@ RSpec.describe User, type: :model do
         :first_name => 'salim',
         :last_name => 'Ali',
         :email => 'unique@gmail.com',
-        :password => '12345',
-        :password_confirmation => '12345'
+        :password => '123456',
+        :password_confirmation => '123456'
       })
 
       @user5.validate
@@ -76,15 +87,22 @@ RSpec.describe User, type: :model do
 
     end
 
-    it 'Should be required : first name, last name and email' do
 
-      @user = User.new({:password => '12345', :password_confirmation => '12345'})
+    it "Should have a minimum length" do
       
-      @user.validate
+      @user6 = User.new({
+        :first_name => 'salim',
+        :last_name => 'Ali',
+        :email => 'unique@gmail.com',
+        :password => '12345',
+        :password_confirmation => '12345'
+      })
 
-      expect(@user.errors.full_messages).to include("First name can't be blank")
-      expect(@user.errors.full_messages).to include("Last name can't be blank")
-      expect(@user.errors.full_messages).to include("Email can't be blank")
+      @user6.validate
+      expect(@user6.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user6.save).to be_falsey
+      expect(@user6.id).to_not be_present
+
     end
 
     
